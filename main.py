@@ -14,19 +14,21 @@ screen = pygame.display.set_mode((800, 600))
 # therefore fast iteration and enemy and  bullet and destroyer will move fast than expected
 # Background
 # Background
-background = pygame.image.load('background2.jpeg')
+background = pygame.image.load('static/images/background2.jpeg')
 
 # Sound
-mixer.music.load("background.wav")
+mixer.music.load("static/music/background.wav")
 mixer.music.play(-1)
+
+#all images must be 32*32
 
 # Caption and Icon
 pygame.display.set_caption("Space Invader")
-icon = pygame.image.load('ufo.png')
+icon = pygame.image.load('static/images/ufo.png')
 pygame.display.set_icon(icon)
 
 # Player
-playerImg = pygame.image.load('player.png')
+playerImg = pygame.image.load('static/images/player.png')
 playerX = 370
 playerY = 480
 playerX_change = 0
@@ -40,8 +42,8 @@ enemyY_change = []
 num_of_enemies = 6
 
 for i in range(num_of_enemies):
-    enemyImg.append(pygame.image.load('spider.png'))
-    enemyImg.append(pygame.image.load('death.png'))
+    enemyImg.append(pygame.image.load('static/images/spider.png'))
+    enemyImg.append(pygame.image.load('static/images/death.png'))
     enemyX.append(random.randint(0, 736))
     enemyY.append(random.randint(50, 150))
     enemyX_change.append(4)
@@ -52,7 +54,7 @@ for i in range(num_of_enemies):
 # Ready - You can't see the bullet on the screen
 # Fire - The bullet is currently moving
 
-bulletImg = pygame.image.load('bullet.png')
+bulletImg = pygame.image.load('static/images/bullet.png')
 bulletX = 0
 bulletY = 480
 bulletX_change = 0
@@ -130,7 +132,7 @@ while play_again:
                         playerX_change = 8
                     if event.key == pygame.K_SPACE:
                         if bullet_state is "ready":
-                            bulletSound = mixer.Sound("laser.wav")
+                            bulletSound = mixer.Sound("static/music/laser.wav")
                             bulletSound.play()
                             # Get the current x cordinate of the spaceship
                             bulletX = playerX
@@ -170,7 +172,7 @@ while play_again:
                 # Collision
                 collision = isCollision(enemyX[i], enemyY[i], bulletX, bulletY)
                 if collision:
-                    explosionSound = mixer.Sound("explosion.wav")
+                    explosionSound = mixer.Sound("static/music/explosion.wav")
                     explosionSound.play()
                     bulletY = 480  #bullet came back on top of destroyer
                     bullet_state = "ready"
